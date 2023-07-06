@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_post
+  before_action :set_comment, only: [:edit, :update, :destroy]
 
   def index
     @comments = @post.comments
@@ -22,15 +22,19 @@ class CommentsController < ApplicationController
   def edit; end
 
   def update
-      if @comment.update(comment_params)
-              flash[:notice] = 'Comment updated successfully'
-              redirect_to post_comments_path(@post)
-      else
-        render :edit
-      end
+    if @comment.update(comment_params)
+      flash[:notice] = 'Comment updated successfully'
+      redirect_to post_comments_path(@post)
+    else
+      render :edit
     end
+  end
 
-
+  def destroy
+    @comment.destroy
+    flash[:notice] = 'Comment deleted successfully'
+    redirect_to post_comments_path(@post)
+  end
 
   private
 
@@ -42,9 +46,9 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:content)
   end
 
-   def set_comment
-       @comment = @post.comments.find(params[:id])
-     end
+  def set_comment
+    @comment = @post.comments.find(params[:id])
+  end
 end
 
 
