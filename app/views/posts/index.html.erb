@@ -6,6 +6,7 @@
   <thead>
   <td><%= Post.human_attribute_name(:title) %></td>
   <td><%= Post.human_attribute_name(:content) %></td>
+  <td>created at</td>
   <td>user</td>
   <td>comments count</td>
   <td>category</td>
@@ -16,6 +17,7 @@
     <tr>
       <td><%= post.title %></td>
       <td><%= post.content %></td>
+      <td><%= post.created_at %></td>
       <td><%= post.user&.email %></td>
       <td><%= post.comments_count %></td>
       <td><%= image_tag post.image.url if post.image.present? %></td>
