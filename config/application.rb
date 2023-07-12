@@ -35,5 +35,6 @@ module App
     config.i18n.available_locales = [:en, 'zh-CN']
     # Don't generate system test files.
     config.generators.system_tests = nil
+    Time::DATE_FORMATS.merge!(default: '%Y/%m/%d %I:%M %p', ymd: '%Y/%m/%d')
   end
 end
