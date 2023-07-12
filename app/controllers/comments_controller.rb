@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   before_action :validate_comment_owner, only: [:edit, :update, :destroy]
 
   def index
-    @comments = @post.comments.includes(:user)
+    @comments = @post.comments.includes(:user).page(params[:page]).per(5)
   end
 
   def new
@@ -52,13 +52,14 @@ class CommentsController < ApplicationController
 
   def set_comment
     @comment = @post.comments.find(params[:id])
-    end
-    def validate_comment_owner
-      unless @comment.user == current_user
-        flash[:notice] = 'the comment not belongs to you'
-        redirect_to post_comments_path(@post)
+  end
+
+  def validate_comment_owner
+    unless @comment.user == current_user
+      flash[:notice] = 'the comment not belongs to you'
+      redirect_to post_comments_path(@post)
     end
   end
-  end
+end
 
 
