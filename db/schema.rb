@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_13_021029) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_13_080430) do
   create_table "categories", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -66,8 +66,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_021029) do
     t.integer "comments_count"
     t.string "image"
     t.bigint "genre_id"
+    t.datetime "deleted_at"
     t.index ["genre_id"], name: "index_posts_on_genre_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "profiles", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id"
+    t.date "birthday"
+    t.string "legal_name"
+    t.string "location"
+    t.string "education"
+    t.string "occupation"
+    t.text "bio"
+    t.text "specialty"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
