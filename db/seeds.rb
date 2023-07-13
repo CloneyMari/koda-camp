@@ -10,6 +10,11 @@
   puts "create user id: #{user.id}, email: #{user.email}"
 end
 
+%w[Activity Event Topic News Sport].each do |name|
+  genre = Genre.create(name: name)
+  puts "create genre name: #{genre.name}"
+end
+
 30.times do |i|
   puts "start create #{i} post"
   post = Post.create(title: Faker::Lorem.sentence, content: Faker::Lorem.paragraph, user: User.all.sample)
