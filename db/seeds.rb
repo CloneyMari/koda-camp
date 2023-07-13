@@ -15,6 +15,11 @@ end
   puts "create genre name: #{genre.name}"
 end
 
+%w[Happy Angry Sad In_love].each do |name|
+  mood = Mood.create(name: name)
+  puts "create mood name: #{mood.name}"
+end
+
 30.times do |i|
   puts "start create #{i} post"
   post = Post.create(title: Faker::Lorem.sentence, content: Faker::Lorem.paragraph, user: User.all.sample)
