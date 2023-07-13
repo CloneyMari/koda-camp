@@ -11,4 +11,5 @@ class Post < ApplicationRecord
   def destroy
     update(deleted_at: Time.now)
   end
+  has_many :posts
 end
