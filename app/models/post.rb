@@ -10,10 +10,12 @@ class Post < ApplicationRecord
   belongs_to :user
   mount_uploader :image, ImageUploader
 
+  delegate :email, to: :user, prefix: :user
   has_many :posts
   has_many :post_mood_ships
   has_many :posts, through: :post_mood_ships
+
   def destroy
-  update(deleted_at: Time.now)
+    update(deleted_at: Time.now)
   end
 end
